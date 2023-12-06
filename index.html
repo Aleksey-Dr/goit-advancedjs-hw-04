@@ -2,83 +2,50 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vanilla-app-template/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
+    <link rel="icon" type="images/svg+xml" href="/goit-advancedjs-hw-04/assets/input-search-7e9d93e5.svg">
+    <title>Pixabay</title>
     
-    <script type="module" crossorigin src="/vanilla-app-template/commonHelpers.js"></script>
-    <link rel="stylesheet" href="/vanilla-app-template/assets/index-10c40100.css">
+    <script type="module" crossorigin src="/goit-advancedjs-hw-04/commonHelpers.js"></script>
+    <link rel="modulepreload" crossorigin href="/goit-advancedjs-hw-04/assets/vendor-f67ecabd.js">
+    <link rel="stylesheet" href="/goit-advancedjs-hw-04/assets/vendor-eb6030bc.css">
+    <link rel="stylesheet" href="/goit-advancedjs-hw-04/assets/index-91d7bc28.css">
   </head>
   <body>
-    <header class="header">
-  <nav class="nav">
-    <ul class="nav-list">
-      <li class="nav-item">
-        <a href="./page-2.html" class="nav-link">Page 2</a>
-      </li>
-
-      <li class="nav-item">
-        <a href="./page-3.html" class="nav-link">Page 3</a>
-      </li>
-    </ul>
-  </nav>
-</header>
-
-
-    <section>
-      <h1>Lorem ipsum dolor sit amet.</h1>
-      <!-- Path to images as from index.html file -->
-      <img src="/vanilla-app-template/assets/javascript-8dac5379.svg" alt="" />
-    </section>
-
-    <!-- Loads the specified .html file -->
-    <section class="vite-promo">
-  <div class="container">
-    <div class="wrapper">
-      <h2 class="title">
-        <span class="gradient">Vite</span>
-      </h2>
-      <p class="text">Next Generation Frontend Tooling</p>
-      <p class="tagline">
-        Get ready for a development environment that can finally catch up with
-        you.
-      </p>
-
-      <ul class="actions">
-        <li class="action">
-          <a
-            class="link"
-            href="https://vitejs.dev/guide/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Get Started</a
-          >
-        </li>
-        <li class="action">
-          <a
-            class="link"
-            href="https://github.com/vitejs/vite"
-            target="_blank"
-            rel="noopener noreferrer"
-            >View on GitHub</a
-          >
-        </li>
-      </ul>
-    </div>
-
-    <div class="thumb">
-      <!-- Path to images as from index.html file -->
-      <img
-        class="pic"
-        src="/vanilla-app-template/assets/vite-logo-51249ca9.png"
-        alt="Vite logo"
-        width="640"
-        height="640"
+    <div class="search-bar">
+      <form class="search-form" id="search-form">
+        <button type="submit" class="btn">
+            <svg
+              aria-labelledby="title desc"
+              role="img" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 19.9 19.7"
+              class="btn-label">
+            >
+              <title id="title">
+                Search Icon
+              </title>
+              <desc id="desc">A magnifying glass icon.</desc>
+              <g class="search-path" fill="none" stroke="#848F91">
+                <path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/>
+                <circle cx="8" cy="8" r="7"/>
+              </g>
+            </svg>
+        </button>
+      <input
+        type="text"
+        name="searchQuery"
+        autocomplete="off"
+        placeholder="Search images..."
+        class="input"
       />
+    </form>
     </div>
-  </div>
-</section>
 
+    <div class="gallery">
+      <!-- Cards images -->
+    </div>
+ 
+    <button type="button" class="load-more">Load more</button>
 
     
   </body>
