@@ -1,3 +1,8 @@
+import axios from "axios";
+
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+
 // Import styles
 import './css/styles.css';
 // Import fetchGallery
@@ -20,40 +25,65 @@ export const KEY_TO_API = '35129314-12d9f6cafbe4df38ad9bc5f6b';
 
 // Add default value
 let valueTermImages = '';
+// Add default value of a current page 'page='
+export let currentPage = 1;
 
 // ========== listeners
-// Add listeners by "submit" for form wiht function fetchImages(term) in callback
+// listeners by "submit" for form wiht function fetchImages(term) in callback
 refs.searchForm.addEventListener('submit', searchImages);
-// Add listeners by "click" for button "Load more" wiht function onLoadMore() in callback
+// listeners by "click" for button "Load more" wiht function onLoadMore() in callback
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 // ========== function searchImages
-function searchImages(evt) {
+async function searchImages(evt) {
     refs.loadMoreBtn.classList.add('is-hidden');
     // stop reboot page
     evt.preventDefault();
-    // Add clear gallary by submit
+    // clear gallary by submit
     clearGallery();
-    // Constant for a inputed term (for serach images)
-    // Add method trim()
+    // constant for a inputed term (for serach images)
+    // add method trim()
     const termImages = evt.currentTarget.elements.searchQuery.value.trim();
     console.log(termImages);
+    // check a content of input and show notification
+    if (termImages.trim() === '') {
+      iziToast.show({
+        backgroundColor: 'lightyellow',
+        message: `Empty string`,
+        timeout: 3000,
+        position: 'topRight',
+        transitionIn: 'flipInX',
+        transitionOut: 'flipOutX',
+      });
+      return;
+    }
     
     if (valueTermImages !== termImages) {
-        // Add function for reset page by new termImages
+        // function for reset page by new termImages
         restartPage();
     }
     valueTermImages = termImages;
+    currentPage = 1;
 
-    fetchGallery(termImages)
-        .then(renderCards)
-        .catch(error => console.log(error));
-}
-
-function onLoadMore() {
-  fetchGallery(valueTermImages).then(renderCards);
-}
+    try {
+        await fetchGallery(termImages, currentPage)
+          .then(renderCards);
+    } catch {
+        error => console.log(error);
+    };
+};
 
 function clearGallery() {
-  refs.galleryImages.innerHTML = '';
+    refs.galleryImages.innerHTML = '';
 }
+
+async function onLoadMore() {
+    // change page of response
+    currentPage += 1;
+    try {
+      await fetchGallery(valueTermImages, currentPage)
+        .then(renderCards);
+    } catch {
+      error => console.log(error);
+    };
+};

@@ -6,7 +6,7 @@ import { KEY_TO_API } from '../../main';
 let currentPage = 1;
 
 // Add asynchronous function
-export async function fetchGallery(term) {
+export async function fetchGallery(term, currentPage) {
     // Add URL to Pixabay
     // Parts URL
     const frontURL = 'https://pixabay.com/api/?key=';
@@ -18,9 +18,7 @@ export async function fetchGallery(term) {
   
     const response = await axios(url);
     const images = await response.data;
-    
-    // Change page of response
-    currentPage += 1;
+  
     console.log(images);
     return images;
 }
