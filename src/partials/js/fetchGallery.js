@@ -19,7 +19,7 @@ export async function fetchGallery(term, currentPage) {
     const response = await axios(url);
     const images = await response.data;
   
-    console.log(images);
+    // console.log(images);
     return images;
 }
 

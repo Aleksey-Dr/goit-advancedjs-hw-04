@@ -12,8 +12,8 @@ const lightbox = new SimpleLightbox('.gallery a');
 export function renderCards(images) {
   // Test by empty
   if (images.totalHits !== 0) {
-    console.log(Math.ceil(images.totalHits / 40));
-    console.log(currentPage);
+    // console.log(Math.ceil(images.totalHits / 40));
+    // console.log(currentPage);
     const markup = images.hits
       .map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => {
         return `<div class="photo-card">

@@ -44,7 +44,7 @@ async function searchImages(evt) {
     // constant for a inputed term (for serach images)
     // add method trim()
     const termImages = evt.currentTarget.elements.searchQuery.value.trim();
-    console.log(termImages);
+    // console.log(termImages);
     // check a content of input and show notification
     if (termImages.trim() === '') {
       iziToast.show({
@@ -66,10 +66,10 @@ async function searchImages(evt) {
     currentPage = 1;
 
     try {
-        await fetchGallery(termImages, currentPage)
-          .then(renderCards);
-    } catch {
-        error => console.log(error);
+      const gallery = await fetchGallery(termImages, currentPage);
+      renderCards(gallery);
+    } catch (error) {
+        console.log(error);
     };
 };
 
@@ -81,9 +81,9 @@ async function onLoadMore() {
     // change page of response
     currentPage += 1;
     try {
-      await fetchGallery(valueTermImages, currentPage)
-        .then(renderCards);
-    } catch {
-      error => console.log(error);
+      const gallery = await fetchGallery(valueTermImages, currentPage);
+      renderCards(gallery);
+    } catch (error) {
+      console.log(error);
     };
 };
